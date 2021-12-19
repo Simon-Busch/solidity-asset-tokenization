@@ -13,3 +13,7 @@ npx hardhat node
 node scripts/sample-script.js
 npx hardhat help
 ```
+
+
+# Purpose of this repo
+Discovering and improving skills around hardhat testing
