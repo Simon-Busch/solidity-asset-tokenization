@@ -8,6 +8,11 @@ async function main() {
 
   console.log("SimonTokenContract deployed to:", SimonTokenContract.address);
 
+  const [owner] = await hre.ethers.getSigners();
+  const SimonTokenSale = await hre.ethers.getContractFactory("SimonTokenSale");
+  // console.log(owner.address);
+  const SimonTokenSaleContract = await SimonTokenSale.deploy(1, owner.address, SimonTokenContract.address);
+  console.log("Simon token sale is deployed to: ", SimonTokenSaleContract.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere

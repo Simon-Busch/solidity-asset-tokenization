@@ -1,3 +1,4 @@
+//SPDX-License-Identifier: Unlicense
 pragma solidity ^0.8.0;
 
 // import "@openzeppelin/contracts/GSN/Context.sol";
@@ -6,18 +7,6 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
-/**
- * @title Crowdsale
- * @dev Crowdsale is a base contract for managing a token crowdsale,
- * allowing investors to purchase tokens with ether. This contract implements
- * such functionality in its most fundamental form and can be extended to provide additional
- * functionality and/or custom behavior.
- * The external interface represents the basic interface for purchasing tokens, and conforms
- * the base architecture for crowdsales. It is *not* intended to be modified / overridden.
- * The internal interface conforms the extensible and modifiable surface of crowdsales. Override
- * the methods to add functionality. Consider using 'super' where appropriate to concatenate
- * behavior.
- */
 contract Crowdsale is ReentrancyGuard {
     using SafeERC20 for IERC20;
 
@@ -53,7 +42,7 @@ contract Crowdsale is ReentrancyGuard {
      * @param wallet Address where collected funds will be forwarded to
      * @param token Address of the token being sold
      */
-    constructor (uint256 rate, address payable wallet, IERC20 token) public {
+    constructor (uint256 rate, address payable wallet, IERC20 token) {
         require(rate > 0, "Crowdsale: rate is 0");
         require(wallet != address(0), "Crowdsale: wallet is the zero address");
         require(address(token) != address(0), "Crowdsale: token is the zero address");
@@ -76,21 +65,21 @@ contract Crowdsale is ReentrancyGuard {
     /**
      * @return the token being sold.
      */
-    function token() public view returns (IERC20) {
+    function tokenFunction() public view returns (IERC20) {
         return _token;
     }
 
     /**
      * @return the address where funds are collected.
      */
-    function wallet() public view returns (address payable) {
+    function walletFunction() public view returns (address payable) {
         return _wallet;
     }
 
     /**
      * @return the number of token units a buyer gets per wei.
      */
-    function rate() public view returns (uint256) {
+    function rateFunction() public view returns (uint256) {
         return _rate;
     }
 
